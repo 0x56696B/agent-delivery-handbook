@@ -7,8 +7,8 @@ This folder holds the whole craft: the recipes, the laws, the fences, the script
 
 | You are | Read |
 |---|---|
-| A human | `HANDOFF-FOR-HUMANS.pdf`. Start at "Read Me First". The dictionary is at the end. |
-| An AI agent | `HANDOFF-FOR-AGENTS.md`. Start at section 1, the steal list. |
+| A human | `FOR-HUMANS.pdf`. Start at "Read Me First". The dictionary is at the end. |
+| An AI agent | `FOR-AGENTS.md`. Start at section 1, the steal list. |
 
 ## What is in the box
 
@@ -30,7 +30,7 @@ This folder holds the whole craft: the recipes, the laws, the fences, the script
 ## Fill the blanks
 
 Every org-specific value is a `<PLACEHOLDER>` (for example `<ADO_ORG>`, `<QA_URL>`, `<TECH_LEAD>`).
-`HANDOFF-FOR-AGENTS.md` section 3 lists each one and where to find its value.
+`FOR-AGENTS.md` section 3 lists each one and where to find its value.
 Repo names are roles: `orchestrator` (backend agent API), `web-app` (frontend), `media-mcp`, `data-mcp`, `file-gateway`, `infra` (Terraform), `legacy-agent` (being retired).
 
 ## Rebuild the PDF
@@ -44,3 +44,5 @@ Needs Bun and Chrome, Chromium, or Brave (or set `CHROME_PATH`). The `marked` an
 ## License
 
 MIT, see `LICENSE`. Third-party skills in `skills/third-party/` keep their own MIT notices; see `skills/third-party/CREDITS.md`.
+
+FOR HUMANS, READ THE ./FOR-HUMANS.pdf

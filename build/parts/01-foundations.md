@@ -48,8 +48,8 @@ The pack has no real names. Client facts are placeholders like `<PROJECT>`, `<AD
 | Folder or file | What | When you need it |
 |---|---|---|
 | `README.md` | index of the pack | first look |
-| `HANDOFF-FOR-HUMANS.pdf` | this book | now |
-| `HANDOFF-FOR-AGENTS.md` | the same craft, written for the agent | when you wire or tune an agent |
+| `FOR-HUMANS.pdf` | this book | now |
+| `FOR-AGENTS.md` | the same craft, written for the agent | when you wire or tune an agent |
 | `build/` | `build.ts`, `style.css` that make the PDF | only to rebuild this book |
 | `skills/` | recipes, one folder each with `SKILL.md` | every day |
 | `skills/third-party/` | upstream skills copied unchanged, `CREDITS.md` | grilling, research, review |

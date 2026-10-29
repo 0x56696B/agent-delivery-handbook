@@ -97,12 +97,12 @@ svg { max-width: 100%; height: auto; display: block; margin: 8pt auto; }
 <td>first look</td>
 </tr>
 <tr>
-<td><code>HANDOFF-FOR-HUMANS.pdf</code></td>
+<td><code>FOR-HUMANS.pdf</code></td>
 <td>this book</td>
 <td>now</td>
 </tr>
 <tr>
-<td><code>HANDOFF-FOR-AGENTS.md</code></td>
+<td><code>FOR-AGENTS.md</code></td>
 <td>the same craft, written for the agent</td>
 <td>when you wire or tune an agent</td>
 </tr>
@@ -3190,7 +3190,7 @@ Leave out <code>--target-branch</code> when the target is <code>main</code>. The
 <li>Prove a guard. Ask the agent to read a file above <code>tasks/</code>. See the block. Ask it to kill a process it did not start. See the block.</li>
 <li>Start your papercuts log: one line per time sink (date, symptom, fix, project).</li>
 </ol>
-<p><strong>Where in pack.</strong> <code>harness/</code>, <code>scripts/</code>, <code>skills/repo-onboarding/SKILL.md</code>, <code>harness/mcp.template.json</code>. Give your agent <code>HANDOFF-FOR-AGENTS.md</code> too: its Section 9 is the adoption procedure.</p>
+<p><strong>Where in pack.</strong> <code>harness/</code>, <code>scripts/</code>, <code>skills/repo-onboarding/SKILL.md</code>, <code>harness/mcp.template.json</code>. Give your agent <code>FOR-AGENTS.md</code> too: its Section 9 is the adoption procedure.</p>
 <blockquote>
 <p>Rock rule: restart after every change. Test in a fresh session.</p>
 </blockquote>
@@ -3351,7 +3351,7 @@ Leave out <code>--target-branch</code> when the target is <code>main</code>. The
 </tr>
 </tbody></table>
 <h2 id="open-gaps-worth-fixing-first">Open gaps worth fixing first</h2>
-<p><strong>What.</strong> Real drift, checked in the pack&#39;s files. <strong>Why.</strong> The clear-cut text drift is fixed in the shipped files. What is left needs a human or design call. Fix the top of this list in weeks 1 to 4. <code>HANDOFF-FOR-AGENTS.md</code> (Section 8) keeps the longer list for your agent.</p>
+<p><strong>What.</strong> Real drift, checked in the pack&#39;s files. <strong>Why.</strong> The clear-cut text drift is fixed in the shipped files. What is left needs a human or design call. Fix the top of this list in weeks 1 to 4. <code>FOR-AGENTS.md</code> (Section 8) keeps the longer list for your agent.</p>
 <p><strong>How.</strong> Work down the list.</p>
 <ol>
 <li>Scanner config. Copy <code>scripts/gitleaks.toml</code> and <code>scripts/gitleaks-report.tmpl</code> into the tasks root, next to <code>scripts/secret-scan.sh</code>. The config only extends the default rules. Add a rule-scoped allowlist block and smoke-test it: one case must fire, one must pass (fall P8). Not shipped at all: a plan template, the plan-mode hook (fall A7), and the papercuts file. Make them.</li>

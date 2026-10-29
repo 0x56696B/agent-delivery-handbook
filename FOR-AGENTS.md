@@ -1,4 +1,4 @@
-# HANDOFF-FOR-AGENTS
+# FOR-AGENTS
 
 Agent-facing guide to the handoff pack. The pack root is `handoff/`. Every path below is relative to the pack root unless it starts with `<tasks-root>`, `~`, `.omp/`, or `.claude/` (install targets).
 `README.md` is the human-level index. This file is decision data: what exists, what it needs, what is broken, what to ask. Start at Section 1 after reading Section 0.
@@ -134,8 +134,8 @@ Rank = expected value to a new adopter first, then low effort. The rank is the g
 ```
 handoff/
   README.md                  human-level index and install targets
-  HANDOFF-FOR-HUMANS.pdf     the human handbook, built from build/parts
-  HANDOFF-FOR-AGENTS.md      this file
+  FOR-HUMANS.pdf     the human handbook, built from build/parts
+  FOR-AGENTS.md      this file
   build/                     inputs for the human PDF (build.ts, style.css, handbook.html, parts/*.md). Not for agents
   skills/                    36 workflow and wiki skills (one folder each, SKILL.md)
     third-party/             3 upstream skills copied verbatim, plus CREDITS.md and LICENSE
@@ -324,7 +324,7 @@ Roles and triggers are in Section 10. Install scope below.
 | `vault/examples/sources/2026-03-05-slack-reading-precision-thread.md`, `vault/examples/sources/2026-03-06-vendor-meter-protocol-guide.md`, `vault/examples/raw/2026-03-06-vendor-meter-protocol-guide.md` | Fictional source pages and the raw original |
 
 #### 2.3.10 Top level and build
-`README.md` (index), `HANDOFF-FOR-AGENTS.md` (this file), `HANDOFF-FOR-HUMANS.pdf` (the human handbook). `build/build.ts` and `build/style.css` are the PDF builder (`cd build && bun build.ts`; it needs Bun and a Chromium-based browser). `build/handbook.html` is the intermediate output. `build/parts/00-cover.md`, `build/parts/01-foundations.md`, `build/parts/02-making.md`, `build/parts/03-shipping.md`, `build/parts/04-wisdom.md`, and `build/parts/05-dictionary.md` are the handbook source. None of `build/` is agent input.
+`README.md` (index), `FOR-AGENTS.md` (this file), `FOR-HUMANS.pdf` (the human handbook). `build/build.ts` and `build/style.css` are the PDF builder (`cd build && bun build.ts`; it needs Bun and a Chromium-based browser). `build/handbook.html` is the intermediate output. `build/parts/00-cover.md`, `build/parts/01-foundations.md`, `build/parts/02-making.md`, `build/parts/03-shipping.md`, `build/parts/04-wisdom.md`, and `build/parts/05-dictionary.md` are the handbook source. None of `build/` is agent input.
 
 ### 2.4 Features with no equivalent elsewhere, and fallbacks
 | OMP feature (pack paths) | Used for | Fallback |

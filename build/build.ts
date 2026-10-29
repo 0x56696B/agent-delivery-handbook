@@ -1,4 +1,4 @@
-// Render parts/*.md (joined in file-name order) to ../HANDOFF-FOR-HUMANS.pdf.
+// Render parts/*.md (joined in file-name order) to ../FOR-HUMANS.pdf.
 // Run: bun build.ts   (needs Bun and a local Chrome or Chromium)
 // Packages (marked, puppeteer-core) install on first run via Bun auto-install.
 // Text before the first "# " heading becomes the cover page.
@@ -14,7 +14,7 @@ const partFiles = readdirSync(partsDir).filter((f) => f.endsWith(".md")).sort();
 if (partFiles.length === 0) throw new Error(`No .md files in ${partsDir}`);
 const src = (await Promise.all(partFiles.map((f) => Bun.file(join(partsDir, f)).text()))).join("\n\n");
 const css = await Bun.file(join(here, "style.css")).text();
-const out = join(here, "..", "HANDOFF-FOR-HUMANS.pdf");
+const out = join(here, "..", "FOR-HUMANS.pdf");
 
 // Newest Playwright-managed Chromium, if any (~/Library/Caches/ms-playwright or ~/.cache/ms-playwright).
 const playwrightChromes = [join(homedir(), "Library/Caches/ms-playwright"), join(homedir(), ".cache/ms-playwright")]

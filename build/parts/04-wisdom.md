@@ -614,7 +614,7 @@ You are new. The org is new. Do not copy blind. Copy the laws. Rewrite the names
 8. Prove a guard. Ask the agent to read a file above `tasks/`. See the block. Ask it to kill a process it did not start. See the block.
 9. Start your papercuts log: one line per time sink (date, symptom, fix, project).
 
-**Where in pack.** `harness/`, `scripts/`, `skills/repo-onboarding/SKILL.md`, `harness/mcp.template.json`. Give your agent `HANDOFF-FOR-AGENTS.md` too: its Section 9 is the adoption procedure.
+**Where in pack.** `harness/`, `scripts/`, `skills/repo-onboarding/SKILL.md`, `harness/mcp.template.json`. Give your agent `FOR-AGENTS.md` too: its Section 9 is the adoption procedure.
 
 > Rock rule: restart after every change. Test in a fresh session.
 
@@ -697,7 +697,7 @@ You are new. The org is new. Do not copy blind. Copy the laws. Rewrite the names
 
 ## Open gaps worth fixing first
 
-**What.** Real drift, checked in the pack's files. **Why.** The clear-cut text drift is fixed in the shipped files. What is left needs a human or design call. Fix the top of this list in weeks 1 to 4. `HANDOFF-FOR-AGENTS.md` (Section 8) keeps the longer list for your agent.
+**What.** Real drift, checked in the pack's files. **Why.** The clear-cut text drift is fixed in the shipped files. What is left needs a human or design call. Fix the top of this list in weeks 1 to 4. `FOR-AGENTS.md` (Section 8) keeps the longer list for your agent.
 
 **How.** Work down the list.
 
