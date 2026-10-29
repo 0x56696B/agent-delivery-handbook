@@ -3,6 +3,8 @@
 One engineer. Many agents. Tickets go in, merged and verified fixes come out.
 This folder holds the whole craft: the recipes, the laws, the fences, the scripts, the memory method, and the scars.
 
+FOR HUMANS THAT STILL READ, CHECK OUT: ./FOR-HUMANS.pdf
+
 ## Start here
 
 | You are | Read |
@@ -44,5 +46,3 @@ Needs Bun and Chrome, Chromium, or Brave (or set `CHROME_PATH`). The `marked` an
 ## License
 
 MIT, see `LICENSE`. Third-party skills in `skills/third-party/` keep their own MIT notices; see `skills/third-party/CREDITS.md`.
-
-FOR HUMANS, READ THE ./FOR-HUMANS.pdf
