@@ -1,0 +1,19 @@
+# Config overlay for run.sh, passed with `omp -p --config`.
+# OMP's project settings loader reads <cwd>/.omp/config.yml only, so this
+# file never affects an interactive session.
+advisor:
+  enabled: false
+memory:
+  backend: "off"
+tools:
+  approvalMode: yolo
+  maxTimeout: 300
+  approval:
+    mcp__slack_conversations_add_message: deny
+    mcp__azure_devops_wit_work_item_write: deny
+    mcp__azure_devops_wit_work_item_comment_write: deny
+    mcp__azure_devops_wit_work_item_link_write: deny
+    mcp__azure_devops_repo_pull_request_write: deny
+    mcp__azure_devops_repo_pull_request_thread_write: deny
+    mcp__azure_devops_repo_create_branch: deny
+    mcp__azure_devops_pipelines_write: deny

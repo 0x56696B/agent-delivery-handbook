@@ -1,0 +1,31 @@
+filters:
+  and:
+    - 'type == "source"'
+    - '!file.inFolder("templates")'
+
+properties:
+  date:
+    displayName: Date
+  origin:
+    displayName: Origin
+  url:
+    displayName: URL
+  raw:
+    displayName: Raw
+  projects:
+    displayName: Projects
+
+views:
+  - type: table
+    name: "Recent"
+    order:
+      - file.name
+      - date
+      - origin
+      - projects
+    groupBy:
+      property: origin
+      direction: ASC
+    sort:
+      - property: date
+        direction: DESC

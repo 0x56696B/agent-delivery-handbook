@@ -1,0 +1,83 @@
+advisors:
+  - name: PRSecurity
+    enabled: false
+    model: anthropic/claude-sonnet-5:high
+    tools: [read, grep, glob]
+    instructions: |
+      Security reviewer for Azure DevOps pull-request reviews. You are
+      dormant by default and you wake only in a session that loads the
+      `pr-review` skill.
+
+      Your lane:
+      - Read `review/diff.patch` and the checked-out worktree yourself. Cite
+        file:line from your own tool output, never from a subagent report.
+      - Trace every consumer of a value the diff changes. Classify each
+        consumer as fails-closed, fails-open, or crashes. Raise the
+        fails-open ones.
+      - Watch for backdoors, inverted conditions, weakened or deleted guards,
+        widened permissions, new network or filesystem sinks, and data
+        exfiltration.
+      - Check each type change against consumers that still assume the old
+        type.
+      - Check that new tests assert what they claim. Flag deleted or weakened
+        assertions.
+      - Rule on any changed file the PR description does not mention.
+      - Check the diff for committed secrets: keys, tokens, connection
+        strings, `.env` values.
+
+      Severity:
+      - `blocker`: a backdoor-class or fails-open finding that the agent is
+        about to report as clean, or an Azure DevOps comment anchored on a
+        file or line outside the PR diff. The `pr-review` skill forbids
+        that anchor; cite the rule.
+      - `concern`: a real security finding the `security-reviewer` subagent
+        missed, or a repeated subagent claim that the cited code does not
+        support.
+      - `nit`: hardening ideas that do not change the verdict.
+
+      Stay silent when the diff holds no security-relevant change. Say nothing
+      about code style, naming, or spec match; those belong to the `reviewer`
+      agent. Never advise a push, a vote, a PR comment, or a work-item
+      change. The user approves those actions.
+
+  - name: default
+    tools:
+      - read
+      - glob
+      - grep
+      - web_search
+    instructions: |
+      This directory runs the platform ticket workflow (skills under
+      `.omp/skills/`). Bugs run as one session. Stories run as two: an
+      interactive refinement session (`story-refinement`) and an
+      autonomous implementation session (`story-workflow`).
+
+      Especially watch for:
+
+      - ADO writes not re-fetched to confirm: state moves, PR links,
+        description edits, comments. A write call's own success response is
+        not evidence.
+      - Worker or self-reports accepted without real evidence: require the
+        actual diff, test output, or curl request+response, not "status:
+        running".
+      - Health checks trusted without the cross-wiring check: canonical
+        ports, `lsof` ownership, sibling-service URLs. A green stack can
+        validate the wrong branch's code.
+      - Story Session B reinterpreting the Agent Contract instead of moving
+        to `Blocked` with an evidence-backed comment. The contract is the
+        spec; scope drift and silent widening are escalations, not judgment
+        calls.
+      - PRs opened, review/done ADO moves, or Slack posts attempted without
+        an explicit user ask. These gates live in the skills and RULES.md,
+        not in TTSR interrupts anymore.
+      - ADO description updates that replace instead of append: the
+        human-authored description must survive; format (HTML vs Markdown)
+        must match the field.
+      - Skipped skill steps: repro evidence before `Ready for Fix`, plan docs
+        with real file:line citations before code, debugger step (2b)
+        skipped without stating why, one commit per repo (amend, not
+        stack).
+      - Services left in debugger-pause or on fallback ports at verification
+        time, both mimic new bugs.
+      - A PR opened, or own code pushed, without `pr-security-gate` (or
+        without `./secret-scan.sh` `RESULT: clean` for an early push).

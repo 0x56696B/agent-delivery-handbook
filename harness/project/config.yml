@@ -1,0 +1,60 @@
+# Enforcement point for the ask-before gates in RULES.md.
+# `prompt` is honored even under the default `yolo` mode.
+tools:
+  approval:
+    mcp__playwright_browser_evaluate: deny
+    # mcp__playwright_browser_run_code_unsafe is gated by ~/.omp/agent/extensions/tool-approval-gate.ts (review config in ~/.omp/agent/config.yml).
+    # It runs with no prompt when the `tool-call-auditor` role model answers SAFE (rules: .omp/tool-call-auditor.md).
+    # Any other result shows the inline code and the auditor note in a confirm dialog. `filename` calls are refused by guardrails.ts.
+    mcp__playwright_browser_network_request: deny
+    mcp__playwright_browser_network_requests: deny
+    mcp__playwright_browser_console_messages: deny
+    mcp__azure_devops_repo_create_branch: deny
+    mcp__azure_devops_wit_backlog: deny
+    # mcp__azure_devops_wit_work_item_comment_write is gated by ~/.omp/agent/extensions/tool-approval-gate.ts.
+    # It runs with no prompt when the `tool-call-auditor` role model answers SAFE (rules: "ADO work item comments" section of .omp/tool-call-auditor.md and ~/.omp/agent/tool-call-auditor.md).
+    # Any other result shows the comment text and the auditor note in a confirm dialog. Slack posts are allowed without a prompt.
+
+# Turns off the status line git UI (branch, PR, and the `<dir> ↳ <repo>` path suffix).
+# A task folder with exactly one repo symlink (PR-REVIEW-*, single-repo tasks) is not
+# a git repo itself, so the harness's single-direct-child-repo detection
+# (utils/active-repo-context.ts) paints the child repo's path and branch in the status
+# line. The session cwd is still the task folder; only the display was misleading.
+git:
+  enabled: false
+
+# Read by ~/.omp/agent/extensions/vibe-extra-tools.ts, not by the harness itself.
+# Vibe mode strips the director down to `read`, `todo`, and the `vibe_*` tools.
+# Each tool named here is added back when vibe mode is on. This list is unioned
+# with the same key in ~/.omp/agent/config.yml. Read on every prompt, so an edit
+# applies with no restart. Names must be exact registered tool names.
+vibeExtraTools:
+  - services
+
+# Read by ~/.omp/agent/extensions/tool-approval-gate.ts, not by the harness itself.
+# Global defaults live in ~/.omp/agent/config.yml. This block deep-merges over
+# them per tool: objects merge, scalars override, `rules` replaces whole.
+# The project-only self-assign rule lives here because it names a project identity.
+# `tools.approval` cannot express this: its values are plain strings only
+# (tools/approval.ts normalizePolicy drops any non-string).
+# Top-level keys under this block are exact registered tool names. Rules are
+# evaluated in order; the first rule that matches decides. `fallback` applies
+# when no rule matches. Valid decisions: allow, prompt, deny.
+toolApprovalConditions:
+  mcp__azure_devops_wit_work_item_write:
+    rules:
+      - name: area-iteration-and-self-assign
+        decision: allow
+        # Matches `update` and `update_batch`. Every entry in the call's
+        # `updates` (or `batchUpdates`) list must match one matcher below, so
+        # a call that also touches System.State, System.History,
+        # System.Title, or any other field falls through to `fallback`.
+        action: [update, update_batch]
+        everyEntryMatches:
+          # Optimistic-concurrency guard, not a mutation.
+          - path: /rev
+            op: test
+          - path: /fields/System.AreaPath
+          - path: /fields/System.IterationPath
+          - path: /fields/System.AssignedTo
+            valueMatches: "^(<YOUR_EMAIL_ESCAPED>|<YOUR_DISPLAY_NAME>)$"

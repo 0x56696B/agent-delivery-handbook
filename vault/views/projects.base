@@ -1,0 +1,48 @@
+filters:
+  and:
+    - 'type == "project"'
+    - '!file.inFolder("templates")'
+
+properties:
+  org:
+    displayName: Org
+  repo:
+    displayName: Repo
+  repo_path:
+    displayName: "Repo path"
+  ado_project:
+    displayName: "ADO project"
+  status:
+    displayName: Status
+  summary:
+    displayName: Summary
+
+views:
+  - type: table
+    name: "Active"
+    filters:
+      and:
+        - 'status == "active"'
+    order:
+      - file.name
+      - org
+      - ado_project
+      - summary
+    sort:
+      - property: file.name
+        direction: ASC
+
+  - type: table
+    name: "By status"
+    order:
+      - file.name
+      - org
+      - status
+      - ado_project
+      - summary
+    groupBy:
+      property: status
+      direction: ASC
+    sort:
+      - property: file.name
+        direction: ASC

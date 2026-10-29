@@ -1,0 +1,224 @@
+symbolPreset: nerd
+theme:
+  dark: dark-aurora
+  light: light
+setupVersion: 2
+statusLine:
+  sessionAccent: true
+  transparent: true
+  compactThinkingLevel: true
+  showHookStatus: true
+  preset: default
+  separator: slash
+terminal:
+  showProgress: true
+tui:
+  tight: true
+  imeSafeCursor: false
+display:
+  shimmer: kitt
+  showTokenUsage: true
+  cacheMissMarker: false
+  hideToolActivity: false
+modelTags:
+  tool-call-auditor:
+    name: tool-call-auditor
+modelRoles:
+  slow: anthropic/claude-opus-5-5:auto
+  plan: anthropic/claude-opus-5-5:auto
+  commit: anthropic/claude-haiku-5-5:auto
+  tiny: anthropic/claude-haiku-5-5:auto
+  task: anthropic/claude-sonnet-5-5:auto
+  default: anthropic/claude-sonnet-5-5
+  smol: anthropic/claude-haiku-5-5:auto
+  advisor: anthropic/claude-opus-5-5:auto
+  search: anthropic/claude-haiku-5-5:auto
+  sonic: anthropic/claude-haiku-5-5:medium
+  speech: local/kokoro
+  memory: anthropic/claude-haiku-5-5:auto
+  dictation: local/nemotron-streaming-en-0.6b
+  tool-call-auditor: anthropic/claude-haiku-5-5:medium
+  FRONTIER: anthropic/claude-fable-5-1:auto
+defaultThinkingLevel: auto
+steeringMode: one-at-a-time
+doubleEscapeAction: none
+features:
+  unexpectedStopDetection: none
+tools:
+  xdev: false
+showHardwareCursor: true
+task:
+  showResolvedModelBadge: false
+  eager: always
+  enableLsp: true
+  isolation:
+    merge: patch
+    enabled: true
+    commits: ai
+  agentAdvisor:
+    task: "on"
+  enableEffort: true
+  structured: true
+  maxRecursionDepth: 1
+proseOnlyThinking: true
+omitThinking: false
+advisor:
+  enabled: true
+  syncBacklog: "3"
+  immuneTurns: 3
+  reviewMode: agent-end
+retry:
+  maxRetries: 3
+  fallbackChains:
+    speech: []
+  waitForUsageReset: true
+includeModelInPrompt: false
+recap:
+  enabled: true
+  idleSeconds: 120
+stt:
+  enabled: true
+startup:
+  quiet: true
+  changelogMode: summary
+  checkUpdate: false
+  setupWizard: false
+branchSummary:
+  enabled: false
+compaction:
+  enabled: false
+  midTurnEnabled: false
+  thresholdPercent: 75
+  handoffSaveToDisk: false
+  remoteStreamingV2Enabled: true
+  methodOrder:
+    - handoff
+    - remote
+    - soft
+    - snapcompact
+    - shake
+  experimentalContextManagement: true
+autolearn:
+  enabled: false
+  autoContinue: true
+readLineNumbers: true
+lsp:
+  formatOnWrite: true
+  diagnosticsOnEdit: true
+bashInterceptor:
+  enabled: true
+python:
+  kernelMode: session
+astGrep:
+  enabled: false
+checkpoint:
+  enabled: false
+vault:
+  enabled: true
+commands:
+  enableOpencodeProject: false
+  enableOpencodeUser: false
+  enableClaudeProject: false
+  enableClaudeUser: false
+providers:
+  autoThinkingMaxEffort: max
+  fetch: auto
+  tinyModelDevice: auto
+  tinyModelDtype: auto
+  kimiApiFormat: auto
+disabledProviders:
+  - llama.cpp
+  - lm-studio
+speech:
+  enabled: false
+  enhanced: true
+secrets:
+  enabled: true
+magicKeywords:
+  ultrathink: true
+memory:
+  backend: local
+speechgen:
+  enabled: false
+extensions:
+  - ~/.bun/install/global/node_modules/@oh-my-pi/swarm-extension
+hideThinkingBlock: true
+model:
+  toolCallLoopGuard:
+    enabled: true
+dev:
+  autoqaConsent: granted
+cycleOrder: []
+colorBlindMode: false
+personality: none
+textVerbosity: low
+mcp:
+  notifications: false
+astEdit:
+  enabled: false
+todo:
+  eager: preferred
+grep:
+  contextBefore: 3
+power:
+  sleepPrevention: system
+disabledExtensions:
+  - extension-module:title
+tier:
+  anthropic: none
+security:
+  enabled: false
+shellPath: /bin/zsh
+browser:
+  relay: false
+  enabled: false
+edit:
+  autoRepair:
+    enabled: true
+  mode: hashline
+treeFilterMode: no-tools
+emojiAutocomplete: false
+error:
+  notify: "on"
+extendedContext: true
+isolation:
+  backend: auto
+toolApprovalConditions:
+  mcp__azure_devops_wit_work_item_write:
+    fallback: allow
+  mcp__azure_devops_wit_work_item_comment_write:
+    fallback: prompt
+    review:
+      field: text
+      subject: Azure DevOps work item comment
+      section: ADO work item comments
+      contextFields:
+        - action
+        - workItemId
+        - project
+        - format
+  mcp__playwright_browser_run_code_unsafe:
+    fallback: prompt
+    review:
+      field: code
+      subject: Playwright code snippet
+      section: Playwright code snippets
+vibeExtraTools:
+  - move_session
+followUpMode: one-at-a-time
+interruptMode: immediate
+input:
+  bareSlashCommands: true
+marketplace:
+  autoUpdate: notify
+plan:
+  defaultOnStartup: false
+  autosave: true
+ida:
+  enabled: false
+title:
+  generator: tiny
+telemetry:
+  otlpExportEnabled: false
+claudeResets:
+  autoRedeem: "yes"

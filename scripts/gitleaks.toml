@@ -1,0 +1,4 @@
+title = "tasks pre-push secret scan"
+
+[extend]
+useDefault = true

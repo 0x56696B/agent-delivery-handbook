@@ -1,0 +1,110 @@
+filters:
+  and:
+    - 'type == "task"'
+    - '!file.inFolder("templates")'
+
+properties:
+  status:
+    displayName: Status
+  priority:
+    displayName: Priority
+  project:
+    displayName: Project
+  due:
+    displayName: Due
+  completed:
+    displayName: Completed
+  ado_id:
+    displayName: "ADO ID"
+  ado_state:
+    displayName: "ADO State"
+  sprint:
+    displayName: Sprint
+  pr:
+    displayName: PR
+  branch:
+    displayName: Branch
+  created:
+    displayName: Created
+
+views:
+  - type: table
+    name: "Open"
+    filters:
+      and:
+        - 'status != "done"'
+        - 'status != "dropped"'
+    order:
+      - file.name
+      - status
+      - priority
+      - project
+      - due
+      - created
+    sort:
+      - property: priority
+        direction: ASC
+      - property: created
+        direction: ASC
+
+  - type: table
+    name: "Doing"
+    filters:
+      or:
+        - 'status == "doing"'
+        - 'status == "review"'
+    order:
+      - file.name
+      - status
+      - priority
+      - project
+      - due
+      - ado_state
+
+  - type: table
+    name: "By project"
+    order:
+      - file.name
+      - project
+      - status
+      - priority
+      - due
+    groupBy:
+      property: project
+      direction: ASC
+    sort:
+      - property: project
+        direction: ASC
+      - property: priority
+        direction: ASC
+
+  - type: table
+    name: "By status"
+    order:
+      - file.name
+      - status
+      - priority
+      - project
+      - due
+    groupBy:
+      property: status
+      direction: ASC
+    sort:
+      - property: priority
+        direction: ASC
+      - property: due
+        direction: ASC
+
+  - type: table
+    name: "Done"
+    filters:
+      and:
+        - 'status == "done"'
+    order:
+      - file.name
+      - project
+      - completed
+      - pr
+    sort:
+      - property: completed
+        direction: DESC

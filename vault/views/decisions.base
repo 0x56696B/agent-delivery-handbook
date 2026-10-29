@@ -1,0 +1,45 @@
+filters:
+  and:
+    - 'type == "decision"'
+    - '!file.inFolder("templates")'
+
+properties:
+  date:
+    displayName: Date
+  project:
+    displayName: Project
+  status:
+    displayName: Status
+  supersedes:
+    displayName: Supersedes
+
+views:
+  - type: table
+    name: "Accepted"
+    filters:
+      and:
+        - 'status == "accepted"'
+    order:
+      - file.name
+      - date
+      - project
+      - supersedes
+    sort:
+      - property: date
+        direction: DESC
+
+  - type: table
+    name: "By project"
+    order:
+      - file.name
+      - project
+      - date
+      - status
+    groupBy:
+      property: project
+      direction: ASC
+    sort:
+      - property: project
+        direction: ASC
+      - property: date
+        direction: DESC

@@ -1,0 +1,13 @@
+{
+  "adapters": {
+    "debugpy": {
+      "command": "/opt/homebrew/bin/uv",
+      "args": ["run", "--with", "debugpy", "python", "-m", "debugpy.adapter"],
+      "languages": ["python"],
+      "attachDefaults": {
+        "request": "attach",
+        "justMyCode": false
+      }
+    }
+  }
+}

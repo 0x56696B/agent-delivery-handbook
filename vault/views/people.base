@@ -1,0 +1,29 @@
+filters:
+  and:
+    - 'type == "person"'
+    - '!file.inFolder("templates")'
+
+properties:
+  org:
+    displayName: Org
+  role:
+    displayName: Role
+  slack_id:
+    displayName: "Slack ID"
+  email:
+    displayName: Email
+
+views:
+  - type: table
+    name: "Directory"
+    order:
+      - file.name
+      - org
+      - role
+      - slack_id
+    groupBy:
+      property: org
+      direction: ASC
+    sort:
+      - property: org
+        direction: ASC

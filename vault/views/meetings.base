@@ -1,0 +1,46 @@
+filters:
+  and:
+    - type == "meeting"
+    - '!file.inFolder("templates")'
+properties:
+  date:
+    displayName: Date
+  kind:
+    displayName: Kind
+  project:
+    displayName: Project
+  org:
+    displayName: Org
+  attendees:
+    displayName: Attendees
+  raw:
+    displayName: Raw
+views:
+  - type: table
+    name: Recent
+    order:
+      - file.name
+      - date
+      - kind
+      - project
+      - org
+      - attendees
+    sort:
+      - property: date
+        direction: DESC
+  - type: table
+    name: By project
+    groupBy:
+      property: project
+      direction: ASC
+    order:
+      - file.name
+      - project
+      - date
+      - kind
+      - org
+    sort:
+      - property: project
+        direction: ASC
+      - property: date
+        direction: DESC

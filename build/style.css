@@ -1,0 +1,46 @@
+@page { size: A4; }
+:root { --ink: #1d1d1f; --muted: #6b6b70; --rule: #d9d9de; --accent: #b4532a; --soft: #faf6f1; --good: #2e7d32; --bad: #b3261e; }
+html { font-size: 10.5pt; }
+body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; color: var(--ink); line-height: 1.5; margin: 0; }
+main { counter-reset: none; }
+
+h1, h2, h3, h4 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; color: #111; }
+h1 { font-size: 24pt; margin: 0 0 10pt; padding-bottom: 6pt; border-bottom: 3px solid var(--accent); break-before: page; }
+h2 { font-size: 15pt; margin: 20pt 0 6pt; color: var(--accent); break-after: avoid; }
+h3 { font-size: 12pt; margin: 14pt 0 4pt; break-after: avoid; }
+h4 { font-size: 10.5pt; margin: 10pt 0 2pt; break-after: avoid; }
+p, li { orphans: 3; widows: 3; }
+a { color: var(--accent); text-decoration: none; }
+strong { color: #000; }
+
+ul, ol { padding-left: 18pt; margin: 4pt 0 8pt; }
+li { margin: 2pt 0; }
+
+code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 8.8pt; background: #f2f2f4; padding: 0 3px; border-radius: 3px; }
+pre { background: #f6f6f8; border: 1px solid var(--rule); border-radius: 6px; padding: 8pt 10pt; font-size: 8.5pt; line-height: 1.4; white-space: pre-wrap; word-break: break-word; break-inside: avoid; }
+pre code { background: none; padding: 0; }
+
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt; font-size: 9pt; break-inside: auto; }
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th { background: #f0ebe5; text-align: left; font-weight: 600; }
+th, td { border: 1px solid var(--rule); padding: 4pt 6pt; vertical-align: top; }
+
+blockquote { margin: 8pt 0; padding: 6pt 10pt; border-left: 4px solid var(--accent); background: var(--soft); border-radius: 0 6px 6px 0; break-inside: avoid; }
+blockquote p { margin: 2pt 0; }
+hr { border: none; border-top: 1px solid var(--rule); margin: 14pt 0; }
+svg { max-width: 100%; height: auto; display: block; margin: 8pt auto; }
+
+/* Cover */
+.cover { height: 250mm; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+.cover h1, .cover p:first-child { border: none; break-before: avoid; }
+.cover p { font-size: 13pt; color: var(--muted); max-width: 140mm; }
+.cover strong { font-size: 30pt; font-family: Georgia, serif; color: #111; display: block; line-height: 1.1; margin-bottom: 10pt; }
+
+/* Table of contents */
+.toc { break-before: page; }
+.toc-title { border-bottom: 3px solid var(--accent); }
+.toc ol { list-style: none; padding: 0; }
+.toc-l1 { margin-top: 6pt; font-weight: 600; }
+.toc-l2 { padding-left: 14pt; font-size: 9.5pt; }
+.toc a { color: var(--ink); }

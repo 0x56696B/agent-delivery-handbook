@@ -1,0 +1,15 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "contextOptions": {
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+      "extraHTTPHeaders": {
+        "sec-ch-ua": "\"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"153\", \"Chromium\";v=\"153\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-ch-ua-platform-version": "\"15.0.0\""
+      }
+    },
+    "initScript": ["windows-client-hints-init.js"]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "_notes": [
+    "Template. Copy to <project>/.omp/mcp.json (project servers) or ~/.omp/agent/mcp.json (global). Replace every <PLACEHOLDER>.",
+    "Never put a real token in this file. OMP resolves a bare env-var name in an stdio `env` block from its own process environment at connect time: the value is the NAME of a shell variable, not the secret.",
+    "Export the variables in the shell BEFORE you launch OMP. A variable exported after OMP started stays invisible; relaunch OMP, do not just reload MCP.",
+    "azure-devops: authenticates with a scope-limited Personal Access Token (-a pat). The variable must hold base64(':' + PAT), the Basic credential form, not a raw PAT. Scope the PAT to what the workflow needs (work items, code, build, test, wiki). No `az login` is needed for this server.",
+    "azure-mcp: uses your Azure CLI / default Azure credential. Run `az login --tenant $CLIENT_AZURE_TENANT_ID --subscription $CLIENT_AZURE_SUB_ID_AI_DEV` first (see rules/project/azure-cli-fallback.md).",
+    "playwright: browser automation. The --secrets file holds the E2E test user credentials (TEST_USER_USERNAME, TEST_USER_PASSWORD, TOTP seed). Keep it outside git. Agents must never read or print it.",
+    "slack: community server korotovsky/slack-mcp-server over stdio, user OAuth token (xoxp). SLACK_MCP_ADD_MESSAGE_TOOL=true registers the write tool; leave it unset for read-only. Create the Slack app from a manifest with user-token scopes: channels/groups/im/mpim history and read, chat:write, search:read, usergroups:read/write, channels:write.",
+    "Tool approval for these servers is set in harness/project/config.yml (tools.approval and toolApprovalConditions)."
+  ],
+  "mcpServers": {
+    "azure-devops": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "<ADO_ORG>", "-a", "pat"],
+      "env": {
+        "PERSONAL_ACCESS_TOKEN": "<ENV_VAR_NAME_HOLDING_BASE64_PAT>"
+      }
+    },
+    "azure-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@azure/mcp@latest", "server", "start"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--secrets", "<PATH_TO_E2E_SECRETS_FILE>"]
+    },
+    "slack": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "slack-mcp-server@latest", "--transport", "stdio"],
+      "env": {
+        "SLACK_MCP_XOXP_TOKEN": "<ENV_VAR_NAME_HOLDING_SLACK_XOXP_TOKEN>",
+        "SLACK_MCP_ADD_MESSAGE_TOOL": "true"
+      }
+    }
+  }
+}
