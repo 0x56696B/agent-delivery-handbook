@@ -1,4 +1,4 @@
-# Handoff pack
+# Agent Delivery Handbook
 
 One engineer. Many agents. Tickets go in, merged and verified fixes come out.
 This folder holds the whole craft: the recipes, the laws, the fences, the scripts, the memory method, and the scars.
